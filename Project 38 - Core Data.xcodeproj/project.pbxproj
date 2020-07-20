@@ -15,6 +15,9 @@
 		CE18140324C5AB08007C30DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE18140124C5AB08007C30DE /* LaunchScreen.storyboard */; };
 		CE18140E24C5AB09007C30DE /* Project_38___Core_DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18140D24C5AB09007C30DE /* Project_38___Core_DataTests.swift */; };
 		CE18141924C5AB09007C30DE /* Project_38___Core_DataUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18141824C5AB09007C30DE /* Project_38___Core_DataUITests.swift */; };
+		CE18142724C5B0CC007C30DE /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18142624C5B0CC007C30DE /* SwiftyJSON.swift */; };
+		CE18142924C5B3A7007C30DE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18142824C5B3A7007C30DE /* DetailViewController.swift */; };
+		CE18142C24C5B58D007C30DE /* Project 38 - Core Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE18142A24C5B58D007C30DE /* Project 38 - Core Data.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		CE18141424C5AB09007C30DE /* Project 38 - Core DataUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Project 38 - Core DataUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE18141824C5AB09007C30DE /* Project_38___Core_DataUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project_38___Core_DataUITests.swift"; sourceTree = "<group>"; };
 		CE18141A24C5AB09007C30DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE18142624C5B0CC007C30DE /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		CE18142824C5B3A7007C30DE /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		CE18142B24C5B58D007C30DE /* Project 38 - Core Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Project 38 - Core Data.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +108,10 @@
 				CE1813F624C5AB06007C30DE /* AppDelegate.swift */,
 				CE1813F824C5AB06007C30DE /* SceneDelegate.swift */,
 				CE1813FA24C5AB06007C30DE /* ViewController.swift */,
+				CE18142624C5B0CC007C30DE /* SwiftyJSON.swift */,
+				CE18142824C5B3A7007C30DE /* DetailViewController.swift */,
 				CE1813FC24C5AB06007C30DE /* Main.storyboard */,
+				CE18142A24C5B58D007C30DE /* Project 38 - Core Data.xcdatamodeld */,
 				CE1813FF24C5AB08007C30DE /* Assets.xcassets */,
 				CE18140124C5AB08007C30DE /* LaunchScreen.storyboard */,
 				CE18140424C5AB08007C30DE /* Info.plist */,
@@ -261,7 +270,10 @@
 			files = (
 				CE1813FB24C5AB06007C30DE /* ViewController.swift in Sources */,
 				CE1813F724C5AB06007C30DE /* AppDelegate.swift in Sources */,
+				CE18142924C5B3A7007C30DE /* DetailViewController.swift in Sources */,
+				CE18142C24C5B58D007C30DE /* Project 38 - Core Data.xcdatamodeld in Sources */,
 				CE1813F924C5AB06007C30DE /* SceneDelegate.swift in Sources */,
+				CE18142724C5B0CC007C30DE /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,6 +602,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CE18142A24C5B58D007C30DE /* Project 38 - Core Data.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CE18142B24C5B58D007C30DE /* Project 38 - Core Data.xcdatamodel */,
+			);
+			currentVersion = CE18142B24C5B58D007C30DE /* Project 38 - Core Data.xcdatamodel */;
+			path = "Project 38 - Core Data.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CE1813EB24C5AB05007C30DE /* Project object */;
 }
