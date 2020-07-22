@@ -26,13 +26,6 @@ class ViewController: UITableViewController {
         
         performSelector(inBackground: #selector(fetchCommits), with: nil)
         
-//        let commit = Commit()
-//        commit.message = "WOOOOO"
-//        commit.url = "http://www.example.com"
-//        commit.date = Date()
-//        commit.sha = "www"
-//        saveConext()
-        
     }
     
     @objc func fetchCommits() {
@@ -54,7 +47,12 @@ class ViewController: UITableViewController {
     }
     
     func configure(commit: Commit, usingJson json: JSON) {
+        commit.sha = json["sha"].stringValue
+        commit.message = json["commit"]["message"].stringValue
+        commit.url = json["html_url"].stringValue
         
+        let formatter = ISO8601DateFormatter()
+        commit.date = formatter.date(from: json["commit"]["committer"]["date"].stringValue) ?? Date()
     }
     
     func saveConext() {
