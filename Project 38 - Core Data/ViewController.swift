@@ -23,6 +23,38 @@ class ViewController: UITableViewController {
                 print(error)
             }
         }
+        
+        performSelector(inBackground: #selector(fetchCommits), with: nil)
+        
+//        let commit = Commit()
+//        commit.message = "WOOOOO"
+//        commit.url = "http://www.example.com"
+//        commit.date = Date()
+//        commit.sha = "www"
+//        saveConext()
+        
+    }
+    
+    @objc func fetchCommits() {
+        if let stringData = try? String(contentsOf: URL(string: "https://api.github.com/repos/apple/swift/commits?per_page=100")!) {
+            let jsonCommits = JSON(parseJSON: stringData)
+            
+            let jsonCommitArray = jsonCommits.arrayValue
+            
+            print("Recieved \(jsonCommitArray.count) new commits.")
+            
+            DispatchQueue.main.async { [unowned self] in
+                for jsonCommit in jsonCommitArray {
+                    let commit = Commit(context: self.container.viewContext)
+                    self.configure(commit: commit, usingJson: jsonCommit)
+                }
+            }
+            saveConext()
+        }
+    }
+    
+    func configure(commit: Commit, usingJson json: JSON) {
+        
     }
     
     func saveConext() {
