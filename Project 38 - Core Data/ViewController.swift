@@ -141,6 +141,11 @@ class ViewController: UITableViewController {
             self.loadSavedData()
         }))
         
+        ac.addAction(UIAlertAction(title: "Show only Durian commits", style: .default, handler: { [unowned self] _ in
+            self.commitPredicate = NSPredicate(format: "author.name == 'Joe Groff'")
+            self.loadSavedData()
+        }))
+        
         ac.addAction(UIAlertAction(title: "Cancel", style: .default))
         present(ac, animated: true)
     }
@@ -164,6 +169,23 @@ class ViewController: UITableViewController {
         cell.detailTextLabel!.text = "By \(commit.author.name) on \(commit.date.description)"
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(identifier: "Detail") as! DetailViewController
+        vc.detailItem = commits[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let commit = commits[indexPath.row]
+            container.viewContext.delete(commit)
+            commits.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            saveConext()
+        }
     }
 }
 
