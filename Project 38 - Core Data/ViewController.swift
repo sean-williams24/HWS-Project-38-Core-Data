@@ -42,7 +42,9 @@ class ViewController: UITableViewController {
     //MARK: - Helper Methods
 
     @objc func fetchCommits() {
-        if let stringData = try? String(contentsOf: URL(string: "https://api.github.com/repos/apple/swift/commits?per_page=100")!) {
+        let newestCommitDate = getNewestCommitDate()
+
+        if let stringData = try? String(contentsOf: URL(string: "https://api.github.com/repos/apple/swift/commits?per_page=100&since=\(newestCommitDate)")!) {
             let jsonCommits = JSON(parseJSON: stringData)
             
             let jsonCommitArray = jsonCommits.arrayValue
@@ -90,6 +92,22 @@ class ViewController: UITableViewController {
         }
         
         commit.author = commitAuthor
+    }
+    
+    func getNewestCommitDate() -> String {
+        let formatter = ISO8601DateFormatter()
+        
+        let newest = Commit.createFetchRequest()
+        let sort = NSSortDescriptor(key: "date", ascending: false)
+        newest.sortDescriptors = [sort]
+        newest.fetchLimit = 1
+        
+        if let result = try? container.viewContext.fetch(newest) {
+            if commits.count > 0 {
+                return formatter.string(from: result[0].date.addingTimeInterval(1))
+            }
+        }
+        return formatter.string(from: Date(timeIntervalSince1970: 0))
     }
     
     func saveConext() {
