@@ -15,6 +15,9 @@ class ViewController: UITableViewController {
     var commits = [Commit]()
     var commitPredicate: NSPredicate?
 
+    
+    //MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +38,9 @@ class ViewController: UITableViewController {
         loadSavedData()
     }
     
+    
+    //MARK: - Helper Methods
+
     @objc func fetchCommits() {
         if let stringData = try? String(contentsOf: URL(string: "https://api.github.com/repos/apple/swift/commits?per_page=100")!) {
             let jsonCommits = JSON(parseJSON: stringData)
@@ -62,7 +68,28 @@ class ViewController: UITableViewController {
         let formatter = ISO8601DateFormatter()
         commit.date = formatter.date(from: json["commit"]["committer"]["date"].stringValue) ?? Date()
         
+        var commitAuthor: Author!
         
+        // see if the author exists already
+        let authorRequest = Author.createFetchRequest()
+        authorRequest.predicate = NSPredicate(format: "name == %@", json["commit"]["committer"]["name"].stringValue)
+        
+        if let authors = try? container.viewContext.fetch(authorRequest) {
+            if authors.count > 0 {
+                // we already have this author
+                commitAuthor = authors[0]
+            }
+        }
+        
+        if commitAuthor == nil {
+            // we didnt find an author - create a new one
+            let author = Author(context: container.viewContext)
+            author.name = json["commit"]["committer"]["name"].stringValue
+            author.email = json["commit"]["committer"]["email"].stringValue
+            commitAuthor = author
+        }
+        
+        commit.author = commitAuthor
     }
     
     func saveConext() {
@@ -134,7 +161,7 @@ class ViewController: UITableViewController {
 
         let commit = commits[indexPath.row]
         cell.textLabel!.text = commit.message
-        cell.detailTextLabel!.text = commit.date.description
+        cell.detailTextLabel!.text = "By \(commit.author.name) on \(commit.date.description)"
 
         return cell
     }
