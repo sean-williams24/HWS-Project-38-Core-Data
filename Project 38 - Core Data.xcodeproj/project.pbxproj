@@ -20,6 +20,8 @@
 		CE18142C24C5B58D007C30DE /* Project 38 - Core Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE18142A24C5B58D007C30DE /* Project 38 - Core Data.xcdatamodeld */; };
 		CEEED94A24C868400065FA96 /* Commit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEED94824C868400065FA96 /* Commit+CoreDataClass.swift */; };
 		CEEED94B24C868400065FA96 /* Commit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEED94924C868400065FA96 /* Commit+CoreDataProperties.swift */; };
+		CEEED94E24C992330065FA96 /* Author+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEED94C24C992330065FA96 /* Author+CoreDataClass.swift */; };
+		CEEED94F24C992330065FA96 /* Author+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEED94D24C992330065FA96 /* Author+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		CE18142B24C5B58D007C30DE /* Project 38 - Core Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Project 38 - Core Data.xcdatamodel"; sourceTree = "<group>"; };
 		CEEED94824C868400065FA96 /* Commit+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Commit+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		CEEED94924C868400065FA96 /* Commit+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Commit+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		CEEED94C24C992330065FA96 /* Author+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Author+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		CEEED94D24C992330065FA96 /* Author+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Author+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,8 @@
 		CE1813F524C5AB06007C30DE /* Project 38 - Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				CEEED94C24C992330065FA96 /* Author+CoreDataClass.swift */,
+				CEEED94D24C992330065FA96 /* Author+CoreDataProperties.swift */,
 				CEEED94824C868400065FA96 /* Commit+CoreDataClass.swift */,
 				CEEED94924C868400065FA96 /* Commit+CoreDataProperties.swift */,
 				CE1813F624C5AB06007C30DE /* AppDelegate.swift */,
@@ -280,7 +286,9 @@
 				CE18142924C5B3A7007C30DE /* DetailViewController.swift in Sources */,
 				CE18142C24C5B58D007C30DE /* Project 38 - Core Data.xcdatamodeld in Sources */,
 				CE1813F924C5AB06007C30DE /* SceneDelegate.swift in Sources */,
+				CEEED94E24C992330065FA96 /* Author+CoreDataClass.swift in Sources */,
 				CEEED94B24C868400065FA96 /* Commit+CoreDataProperties.swift in Sources */,
+				CEEED94F24C992330065FA96 /* Author+CoreDataProperties.swift in Sources */,
 				CE18142724C5B0CC007C30DE /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

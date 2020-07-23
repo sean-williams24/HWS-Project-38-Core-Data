@@ -61,6 +61,8 @@ class ViewController: UITableViewController {
         
         let formatter = ISO8601DateFormatter()
         commit.date = formatter.date(from: json["commit"]["committer"]["date"].stringValue) ?? Date()
+        
+        
     }
     
     func saveConext() {
