@@ -13,9 +13,12 @@ class ViewController: UITableViewController {
     
     var container: NSPersistentContainer!
     var commits = [Commit]()
+    var commitPredicate: NSPredicate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(changeFilter))
         
         container = NSPersistentContainer(name: "Project 38 - Core Data")
         
@@ -74,6 +77,7 @@ class ViewController: UITableViewController {
         let request = Commit.createFetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         request.sortDescriptors = [sortDescriptor]
+        request.predicate = commitPredicate
         
         do {
             commits = try container.viewContext.fetch(request)
@@ -82,6 +86,34 @@ class ViewController: UITableViewController {
         } catch {
             print("Error fetching commits")
         }
+    }
+    
+    @objc func changeFilter() {
+        let ac = UIAlertController(title: "Change Filter", message: nil, preferredStyle: .actionSheet)
+        
+        ac.addAction(UIAlertAction(title: "Show only fixes", style: .default, handler: { [unowned self] _ in
+            self.commitPredicate = NSPredicate(format: "message CONTAINS[c] 'fix'")
+            self.loadSavedData()
+        }))
+        
+        ac.addAction(UIAlertAction(title: "Ignore pull requests", style: .default, handler: { [unowned self] _ in
+            self.commitPredicate = NSPredicate(format: "NOT message BEGINSWITH 'Merge pull request'")
+            self.loadSavedData()
+        }))
+        
+        ac.addAction(UIAlertAction(title: "Show only recent", style: .default, handler: { [unowned self] _ in
+            let twelveHoursAgo = Date().addingTimeInterval(-43000)
+            self.commitPredicate = NSPredicate(format: "date > %@", twelveHoursAgo as NSDate)
+            self.loadSavedData()
+        }))
+        
+        ac.addAction(UIAlertAction(title: "Show all commits", style: .default, handler: { [unowned self] _ in
+            self.commitPredicate = nil
+            self.loadSavedData()
+        }))
+        
+        ac.addAction(UIAlertAction(title: "Cancel", style: .default))
+        present(ac, animated: true)
     }
 
 
